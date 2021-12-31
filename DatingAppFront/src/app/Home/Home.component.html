@@ -1,0 +1,24 @@
+<section class="jumbotron text-center" *ngIf="!registerMode" style="height: 60vh;">
+  <div class="container">
+    <h1 class="jumbotron-heading" style="color:#375a7f">Find your Match</h1>
+    <p class="lead text-muted">All you Need TO Do Is SignUp</p>
+    <p>
+      <a class="btn btn-primary my-2 ml-2"(click)="registerToggle()">Sign Up</a>
+      <a  class=" btn btn-info my-2 ml-2">Learn More</a>
+    </p>
+  </div>
+</section>
+
+<div class="container" *ngIf="registerMode">
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+
+      <!--send values from parent home to child register-->
+ <app-Register [ValuesFromHome]="values" (CancelRegister)="CancelRegisterMode($event)"></app-Register>
+
+    </div>
+  </div>
+</div>
+
+
+

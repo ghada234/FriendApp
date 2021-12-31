@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Friends</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page"[routerLink]="['/members']" routerLinkActive="active"  >Matches</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  [routerLink]="['/list']" routerLinkActive="active"  >List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " [routerLink]="['/messages']" routerLinkActive="active"   >Messages</a>
+        </li>
+      </ul>
+
+
+      <!--loginfrom is template refrence variable-->
+      <form class="d-flex justify-content-center" #LoginForm="ngForm" (ngSubmit)="Login()" *ngIf="!authservice.loggedIn()">
+      <!-- <form class="d-flex justify-content-center" #LoginForm="ngForm" (ngSubmit)="Login()" *ngIf="!_authservice.loggedIn()"> -->
+        <input class="form-control me-2 ml-2" type="text" placeholder="UserName" aria-label="Search" [(ngModel)]="model.UserName" name="UserName" #userName="ngModel" >
+        <input class="form-control me-2 ml-2" type="password" placeholder="Password" aria-label="Search" [(ngModel)]="model.Password" name="Password" #Password="ngModel">
+        <button class="btn btn-outline-success ml-3" type="submit" [disabled]="!LoginForm.valid">Login</button>
+      </form>
+
+
+
+   <!--drop down to welome user-->
+<!-- 
+   <li class="nav-item dropdown" *ngIf="_authservice.loggedIn()"> -->
+    <li class="nav-item dropdown"  *ngIf="authservice.loggedIn()">
+
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: aliceblue; display: inline-block; cursor: pointer;">
+   Wellcome {{authservice.decodedToken?.unique_name}}
+    </a>
+    <img class="img-fluid" src="{{photoUrl}}">
+    <!-- <a (click)="logOut()" style="color: aliceblue; display: inline-block;" style="cursor: pointer; color:aliceblue">Sign out</a> -->
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" [routerLink]="['/member/edit']" routerLinkActive="active" > <i class="fa fa-user"></i>Edit profile</a>
+      <a class="dropdown-item"(click)="logOut()"><i class="fas fa-sign-out-alt"></i> Sign out</a>
+     
+    </div>
+  </li>
+
+    </div>
+  </div>
+</nav>
+
+
+
+

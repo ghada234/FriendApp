@@ -1,0 +1,9 @@
+.custom-pagination ::ng-deep .pagination{
+    display: flex !important;
+    justify-content: center !important;
+    padding: 0px auto !important;
+    
+    margin-top: 40px;
+    width: 100%;
+    font-size: 1rem;
+}

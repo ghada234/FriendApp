@@ -1,0 +1,87 @@
+<!-- <p>
+  memberList works!
+</p>
+
+<p>{{user?.knownAs}}</p> -->
+<div class="row">
+  <div class="col-sm-4">
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{user?.photoUrl ?user.photoUrl :'/assets/images/facebook-user-icon-17.jpg'}}" alt="user.knownAs">
+      <div class="card-body">
+        <h4 class="card-title text-center">{{user?.knownAs}} profile </h4>
+
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Age : {{user?.age}}</li>
+        <li class="list-group-item"> <i class="fas fa-map-marker-alt"></i>Location : {{user?.country}},{{user?.city}}
+        </li>
+        <li class="list-group-item">Last Active : {{moment}}</li>
+        <li class="list-group-item">Member Since : {{user?.created | date:'mediumDate'}}</li>
+      </ul>
+      <div class="card-footer bg-transparent border-success">
+        <div class="btn-group">
+          <button class="btn btn-primary mr-2" style="font-weight: bold;">Like</button>
+          <button class="btn btn-primary mr-2" style="font-weight: bold;" (click)="SelectTab(3)">mesage</button>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+  <!--                        -->
+
+  <div class="col-sm-8">
+<!--member tabs is variable template refrence-->
+    <tabset #memberTabs>
+      <tab heading="About {{user?.knownAs}}" id="tab1">
+        <h4 class="mt-2" style="color:#375a7f">Description</h4>
+        <p>{{user?.introduction}}</p>
+
+
+        <h4 class="mt-2" style="color:#375a7f;">Looking For</h4>
+        <p>{{user?.lookingFor}}</p>
+
+
+      </tab>
+
+      <tab heading="  Interests" id="tab2">
+        <h4 class="mt-2" style="color:#375a7f">Description</h4>
+        <p>{{user?.interests}}</p>
+
+
+
+      </tab>
+
+      
+      <tab heading=" Photos" id="tab2">
+       
+        <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+
+
+
+      </tab>
+
+      <tab heading=" Messages" id="tab2">
+       
+        <!-- <p>Messages will go here</p> -->
+        <app-memberMessages [userId]="user.id"></app-memberMessages>
+
+
+
+      </tab>
+
+
+
+
+    </tabset>
+
+  </div>
+</div>

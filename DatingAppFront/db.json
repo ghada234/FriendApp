@@ -1,0 +1,32 @@
+{
+  "employess": [
+    {
+      "id": 2,
+      "name": "ghada",
+      "gender": "female",
+      "email": "ghada@yahoo.com",
+      "phoneNumber": "123",
+      "contactPrefrence": "telephoneNumber",
+      "dateOfBirth": "2021-01-03T14:28:42.000Z",
+      "department": "2",
+      "isActive": true,
+      "photoPath": "assets\\images\\1.jpg",
+      "password": "123",
+      "confirmPassword": "123"
+    },
+    {
+      "id": 3,
+      "name": "mona",
+      "gender": "female",
+      "email": "mona@yahoo.com",
+      "phoneNumber": "111",
+      "contactPrefrence": "telephoneNumber",
+      "dateOfBirth": "2021-01-11T22:00:00.000Z",
+      "department": "2",
+      "isActive": true,
+      "photoPath": "assets/images/2.png",
+      "password": "222",
+      "confirmPassword": "222"
+    }
+  ]
+}

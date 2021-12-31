@@ -1,0 +1,97 @@
+<div class="row">
+<form #filtrForm="ngForm" (ngSubmit)="loadUsers()">
+  <div class="input-group" style="margin-bottom: 50px;">
+
+    <div class="col-md-2">
+      <input type="number" class="form-control" placeholder="MinAge" aria-label="MinAge" [(ngModel)]="userparams.minAge" name="minAge">
+
+    </div>
+    <div class="col-md-2">
+      <input type="number" class="form-control" placeholder="MaxAge" aria-label="MaxAge"  [(ngModel)]="userparams.maxAge" name="maxAge">
+    </div>
+
+    <div class="col-md-3">
+      <div class="input-group mb-3">
+
+        <div class="row">
+          <div class="col-md-6">
+        <label class="input-group-text" for="inputGroupSelect01">Show Gender</label>
+      </div>
+      <div class="col-md-6">
+        <select class="form-select" id="inputGroupSelect01" name="gender" [(ngModel)]="userparams.gender" >
+       
+          <option [value]="genderlist.value" *ngFor="let genderlist of genderList">{{genderlist.display}}</option>
+         
+
+        </select>
+      </div>
+      </div>
+
+      </div>
+    </div>
+    <div class="col-md-3">
+      <button type="submit" class="btn btn-primary ml-2">Apply Filter</button>
+      <button type="submit" class="btn btn-secondary ml-2" (click)="resetFilter()">Reset Filter</button>
+    </div>
+    <div class="col-md-2">
+
+      <div class="btn-group">
+        <label class="btn btn-primary" [(ngModel)]="userparams.orderBy"
+               btnRadio="lastActive" tabindex="0" role="button" name="lastActive" (click)="loadUsers()">LastActive</label>
+        <label class="btn btn-primary" [(ngModel)]="userparams.orderBy"
+               btnRadio="created" tabindex="0" role="button" name="created"  (click)="loadUsers()">Created</label>
+       
+      </div>
+    </div>
+
+
+  </div>
+</form>
+
+  <div class="col-md-4 col-sm-6" *ngFor="let user of  users ">
+
+    <div class="card mb-3" style="width: 18rem;">
+      <div class="figure">
+        <img class="card-img-top" src="{{user.photoUrl ? user.photoUrl :'/assets/images/facebook-user-icon-17.jpg'}}"
+          alt="{{user.knownas}}">
+
+
+
+        <ul class="list-group list-group-horizontal  mx-auto justify-content-center member-icons animate myaffect">
+
+          <li class="mr-2"><button class="btn btn-primary" [routerLink]="['/members/',user.id]"
+              routerLinkActive="router-link-active"><i class="fa fa-user"></i></button></li>
+          <li class="mr-2"><button class="btn btn-primary" (click)="sendLikes(user.id,user)"><i class="fa fa-heart"></i></button></li>
+          <li class="mr-2"><button class="btn btn-primary"><i class="fa fa-envelope"></i></button></li>
+        </ul>
+
+
+      </div>
+
+      <div class="card-body">
+        <h5 class="card-title"> <i class="far fa-user mr-2"></i>{{user.userName}} ,{{user.age}}</h5>
+
+      </div>
+      <!-- <ul class="list-group list-group-flush">
+    
+        <li class="list-group-item">{{user.city}}</li>
+    
+      </ul> -->
+      <div class="card-footer">
+        {{user.city}}
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+  
+
+  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" style="width:500px"
+    [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage" previousText="&lsaquo;"
+    nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChanged($event)"
+    [maxSize]="maxSizeBtn" class="custom-pagination">
+  </pagination>
+
+

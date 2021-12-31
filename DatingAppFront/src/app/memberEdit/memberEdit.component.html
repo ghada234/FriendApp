@@ -1,0 +1,105 @@
+<!-- <p>
+  memberList works!
+</p>
+
+<p>{{user?.knownAs}}</p> -->
+<div class="row" style="margin-bottom: 15px;">
+  <div class="col-sm-4">
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{photoUrl}}" alt="user.knownAs">
+      <div class="card-body">
+        <h4 class="card-title text-center">Your profile </h4>
+
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Age : {{user?.age}}</li>
+        <li class="list-group-item"> <i class="fas fa-map-marker-alt"></i>Location : {{user?.country}},{{user?.city}}
+        </li>
+        <li class="list-group-item">Last Active : {{user?.lastActive}}</li>
+        <li class="list-group-item">Member Since : {{user?.created}}</li>
+      </ul>
+      <div class="card-footer bg-transparent border-success">
+        <div class="btn-group">
+          <button class="btn btn-success mr-2" style="font-weight: bold;" [disabled]="!editForm.dirty" form="editForm">Save Change</button>
+         
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+  </div>
+
+
+
+  <!--                        -->
+
+  <div class="col-sm-8">
+    <div class="alert alert-warning" role="alert" *ngIf="editForm.dirty">
+     You Have Made Change , Any unSave Change will be  lost
+    </div>
+
+    <tabset>
+      <tab heading="Edit profile" id="tab1">
+
+        <!--form-->
+        <form #editForm="ngForm" (ngSubmit)="updateUser()" id="editForm"> 
+        <h4 class="mt-2" style="color:#fff">Introduction</h4>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="introduction" rows="3" [(ngModel)]="user.introduction"></textarea>
+
+
+        <h4 class="mt-2" style="color:#fff;">Looking For</h4>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="lookingFor" rows="3" [(ngModel)]="user.lookingFor"></textarea>
+
+        <h4 class="mt-2" style="color:#fff;">Intersts</h4>
+        <textarea class="form-control" id="exampleFormControlTextarea1" name="interests" rows="3" [(ngModel)]="user.interests"></textarea>
+
+
+        <h4 class="mt-2" style="color:#fff;">Location Detail</h4>
+        <div class="mb-3 row mt-3">
+          <label for="Country" class="col-sm-2 col-form-label"  style="color:#fff;">Country:</label>
+          <div class="col-sm-10">
+            <input type="text"class="form-control" id="Country" name="country" [(ngModel)]="user.country">
+          </div>
+        </div>
+
+
+        
+        <div class="mb-3 row mt-3">
+          <label for="city" class="col-sm-2 col-form-label"  style="color:#fff;">City:</label>
+          <div class="col-sm-10">
+            <input type="text"class="form-control" id="city" name="city" [(ngModel)]="user.city">
+          </div>
+        </div>
+      </form>
+      <!--form-->
+
+      </tab>
+   
+
+      <tab heading="  Edit Photos" id="tab2">
+        <!-- <app-photoEditor [photos]="user.photos" (photoFromChild)="photoToParent($event)"></app-photoEditor> -->
+
+        <app-photoEditor [photos]="user.photos"></app-photoEditor>
+
+
+
+      </tab>
+
+  
+
+
+
+
+
+
+
+
+    </tabset>
+
+  </div>
+</div>

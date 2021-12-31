@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+p,h1,h2,h3,h4,span,input,a,span{ font-family: "Poppins", sans-serif;;
+}
+
+a{
+    text-decoration: none;
+}
+
+button{
+    color: aliceblue;
+}
+
+.btn{ 
+   
+    color:#fff !important;
+  }
+  li{
+      list-style: none;
+  }

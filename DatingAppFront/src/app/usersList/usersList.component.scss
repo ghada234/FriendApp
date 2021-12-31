@@ -1,0 +1,93 @@
+.figure img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+
+}
+
+.figure:hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+.figure{
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+
+// .member-icons{
+//     position: absolute;
+//     bottom: -30%;
+//     left:0px;
+//     right:0px;
+//     margin-right: auto;
+//     margin-left: auto;
+//     opacity: 0px;
+//     transition: all .3s ease-in-out;
+// }
+// .card:hover .member-icons{
+//     opacity: 1;
+//     bottom: 0;
+// }
+.figure .myaffect::before{
+    position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: -webkit-linear-gradient(top, rgba(72,76,97,0) 0%, rgba(72,76,97,0.8) 75%);
+	background: linear-gradient(to bottom, rgba(72,76,97,0) 0%, rgba(72,76,97,0.8) 75%);
+	content: '';
+	opacity: 0;
+	-webkit-transform: translate3d(0,50%,0);
+	transform: translate3d(0,50%,0);
+}
+.myaffect{
+    position: absolute;
+	bottom: 0;
+	left: 0;
+	padding: 2em;
+	width: 100%;
+	opacity: 0;
+	-webkit-transform: translate3d(0,10px,0);
+	transform: translate3d(0,10px,0);
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;
+}
+
+.figure:hover .myaffect{
+    opacity: 1;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+.figure::before{
+-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+	transition: opacity 0.35s, transform 0.35s;}
+
+	
+
+	.custom-pagination ::ng-deep .pagination{
+		display: flex !important;
+		justify-content: center !important;
+		padding: 0px auto !important;
+		
+		margin-top: 40px;
+		width: 100%;
+		font-size: 1rem;
+	}
+	
+	//  .custom-pagination ::ng-deep .pagination .page-link{
+	//  	 background-color: #375a7f !important;
+	//  	// border-color: #375a7f !important;
+	//  }
+	// .pagination {
+		
+	
+	//   }
+	
+	//    .custom-pagination ::ng-deep .pagination .page-item.active .page-link  {
+	//  	background-color:#6a9bcc;
+	//  }

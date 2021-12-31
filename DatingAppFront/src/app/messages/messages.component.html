@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-4">
+    
+    <div class="btn-group mb-3">
+      <label class="btn btn-primary" [(ngModel)]="messageContainer"
+             btnRadio="Unread" tabindex="0" role="button" name="lastActive" (click)="loadMessages()">UnRead</label>
+      <label class="btn btn-primary" [(ngModel)]="messageContainer"
+             btnRadio="Inbox" tabindex="0" role="button" name="Inbox"  (click)="loadMessages()">InBox</label>
+     
+    </div>
+
+    <div class="alert alert-danger mb-2 mt-2" *ngIf="messages.length==0" role="alert">
+        There Is No Messages
+      </div>
+
+
+  </div>
+</div>
+<div class="container">
+    <div class="card">
+        <div class="top">
+            <h4 class="mt-2">Inbox</h4>
+
+        </div>
+        <div class="bottom"  *ngFor="let message of messages">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-row align-items-center" [routerLink]="['/members/',message.senderId]" [queryParams]="{tab:'3'}" style="cursor: pointer;">
+                    <div class="image"> <img src="{{message.senderPhotoUrl}}" width="70"> <span class="type"><img src="https://i.imgur.com/4lg6mOg.png" width="20"></span> </div>
+                    <div class="d-flex flex-column line-height ml-2"> <span class="font-weight-bold" style="color:#000">{{message.senderKnowAs}}</span> <span>{{message.content}}</span> <span class="d-flex flex-row align-items-center l-now">{{message.messageSent}}</span> </div>
+                </div> <button class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" style="width:500px"
+[itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage" previousText="&lsaquo;"
+nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChanged($event)"
+ class="custom-pagination">
+</pagination>
+
+
+

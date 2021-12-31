@@ -1,0 +1,118 @@
+<body class="text-center">
+  <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="  Register()">
+    <img class="mb-4" src="assets/images/download (1).png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign Up</h1>
+
+
+<!--gender-->
+<label style="margin-right: 5px;">Your Gender:</label>
+<div class="form-check form-check-inline">
+
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="male" formControlName="gender" name="gender">
+  <label class="form-check-label" for="exampleRadios1">
+    Male
+  </label>
+</div>
+<div class="form-check form-check-inline">
+  <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="female" formControlName="gender" name="gender">
+  <label class="form-check-label" for="exampleRadios2">
+  Female
+  </label>
+</div>
+
+
+<!--userName-->
+    <label for="inputEmail" class="sr-only">User Name</label>
+    <input type="text" id="inputEmail" class="form-control mb-2" placeholder="UserName"  autofocus="" formControlName="userName" [ngClass]="{'is-invalid': registerForm.get('userName').errors&& registerForm.get('userName').touched}">
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.get('userName').hasError('required')&& registerForm.get('userName').touched">
+     your name is required  !
+    </div>
+
+    <!--known as-->
+    <label for="inputEmail3" class="sr-only">Known As</label>
+    <input type="text" id="inputEmail3" class="form-control mb-2" placeholder="Known As"  autofocus="" formControlName="knownAs" [ngClass]="{'is-invalid': registerForm.get('knownAs').errors&& registerForm.get('knownAs').touched}">
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.get('knownAs').hasError('required')&& registerForm.get('knownAs').touched">
+     known As required !
+    </div>
+
+    <!--date of birth-->
+    <label for="inputEmail4" class="sr-only">Date Of Birth</label>
+    <input type="text" id="inputEmail4" class="form-control mb-2" placeholder="Date of birth"  autofocus="" formControlName="dateOfBirth" [ngClass]="{'is-invalid': registerForm.get('dateOfBirth').errors&& registerForm.get('dateOfBirth').touched}"   bsDatepicker  [bsConfig]="{ isAnimated: true }" [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" [bsConfig]="{containerClass:'theme-blue'}">
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.get('dateOfBirth').hasError('required')&& registerForm.get('dateOfBirth').touched">
+     Date Of Birth Is Required!
+    </div>
+
+    <!--city-->
+    <label for="inputEmail4" class="sr-only">City</label>
+    <input type="text" id="inputEmail4" class="form-control mb-2" placeholder="City"  autofocus="" formControlName="city" [ngClass]="{'is-invalid': registerForm.get('city').errors&& registerForm.get('city').touched}">
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.get('city').hasError('required')&& registerForm.get('city').touched">
+     known As required !
+    </div>
+
+    <!--country-->
+    <label for="inputEmail5" class="sr-only">Country</label>
+    <input type="text" id="inputEmail5" class="form-control mb-2" placeholder="Country"  autofocus="" formControlName="country" [ngClass]="{'is-invalid': registerForm.get('country').errors&& registerForm.get('city').touched}">
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.get('country').hasError('required')&& registerForm.get('country').touched">
+     known As required !
+    </div>
+    <!--password-->
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Password"  formControlName="password" [ngClass]="{'is-invalid': registerForm.get('password').errors&& registerForm.get('password').touched}">
+
+       
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.get('password').hasError('required')&& registerForm.get('password').touched">
+      Please Enter Password !
+    </div>
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.get('password').hasError('minlength')&& registerForm.get('password').touched">
+      password must be at least 4 charchters
+    </div>
+
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.get('password').hasError('maxlength')&& registerForm.get('password').touched">
+      password can not be more than 8 charcters
+    </div>
+ <!--confirm password-->
+ <label for="inputPassword2" class="sr-only">Confirm Password</label>
+    <input type="password" id="inputPassword2" class="form-control mb-2" placeholder="confirm Password" formControlName="confirmPassword"[ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors&& registerForm.get('confirmPassword').touched || registerForm.hasError('mismatch')&& registerForm.get('confirmPassword').touched  } " >
+
+
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.get('confirmPassword').hasError('required')&& registerForm.get('confirmPassword').touched" 
+    >
+      Please Enter Password !
+    </div>
+
+
+    <div class="invalid-feedback mt-2 mb-2" *ngIf="registerForm.hasError('mismatch')&& registerForm.get('confirmPassword').touched" 
+    >
+     password and confirm password don't match!
+    </div>
+    
+
+
+
+    <!--get the options of select values from database-->
+
+    <!-- <div class="form-row align-items-center mb-2 mt-2">
+      <div class="col-auto my-1">
+        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" >
+         
+          
+          <option [value]="value" *ngFor="let value of ValuesFromHome">{{value.name}}</option>
+      
+        </select>
+      </div>
+      </div> -->
+
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit" style="color: aliceblue !important;"[disabled]="!registerForm.valid">Sign Up</button>
+
+    <button class="btn btn-lg btn-danger btn-block" type="submit" (click)="Cancel()">Cancel</button>
+
+  </form>
+ 
+
+  <hr>
+   <!-- <p>formValue : {{registerForm.value |json}}</p>
+  <p>formstatus : {{registerForm.status |json}}</p> -->
+ 
+</body>

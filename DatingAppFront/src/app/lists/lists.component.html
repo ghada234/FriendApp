@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-3">
+  <div class="btn-group">
+    <label class="btn btn-primary" [(ngModel)]="likesParam"
+           btnRadio="Likers" tabindex="0" role="button" name="lastActive" (click)="loadUsers()">Likers</label>
+    <label class="btn btn-primary" [(ngModel)]="likesParam"
+           btnRadio="Likees" tabindex="0" role="button" name="created"  (click)="loadUsers()">Likees</label>
+   
+  </div>
+
+
+</div>
+<div class="alert alert-danger mb-2 mt-2" *ngIf="users.length==0" role="alert">
+  Sorry! There Is No User
+</div>
+
+<div class="row">
+  
+    <div class="col-md-4 col-sm-6" *ngFor="let user of  users ">
+  
+      <div class="card mb-3" style="width: 18rem;">
+        <div class="figure">
+          <img class="card-img-top" src="{{user.photoUrl ? user.photoUrl :'/assets/images/facebook-user-icon-17.jpg'}}"
+            alt="{{user.knownas}}">
+  
+  
+  
+  
+  
+        </div>
+  
+        <div class="card-body">
+          <h5 class="card-title"> <i class="far fa-user mr-2"></i>{{user.userName}} ,{{user.age}}</h5>
+  
+        </div>
+        <!-- <ul class="list-group list-group-flush">
+      
+          <li class="list-group-item">{{user.city}}</li>
+      
+        </ul> -->
+        <div class="card-footer">
+          {{user.city}}
+        </div>
+  
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  
+  </div>
+  
+    
+  
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" style="width:500px"
+      [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" (pageChanged)="pageChanged($event)"
+   class="custom-pagination" *ngIf="users.length!=0">
+    </pagination>
+  
+  
+  

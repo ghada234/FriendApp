@@ -1,0 +1,18 @@
+img{
+ height: 150px;
+    border-radius: 10px;
+    width:200px;
+}
+button{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.my-drop-zone { border: dotted 3px lightgray; }
+    .nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+    .another-file-over-class { border: dotted 3px green; }
+
+    .alertify .ajs-footer .ajs-buttons .ajs-button{
+        color:#000 !important
+    }
