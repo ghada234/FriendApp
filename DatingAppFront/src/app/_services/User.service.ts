@@ -157,7 +157,19 @@ getMessageThread(id:number,recipentId:number){
  return res;
   })).catch(this.HandleError);
 }
-
+///
+//create message mthod
+CreateMessage(id:number,message:IMessage){
+  var messagee:IMessage;
+  return this.http.post<IMessage>(`/api/users/${id}/messages`,message)
+    
+.catch(this.HandleError);
+}
+//delete message method
+//id is the id of message we wnt delete it
+DeleteMessage(id:number,userId:number){
+return this.http.post(`/api/users/${userId}/messages/${id}`,{}).pipe(map((res)=>{return res})).catch(this.HandleError);
+}
 ///
 getHeader(){ 
   let header = new HttpHeaders().set(

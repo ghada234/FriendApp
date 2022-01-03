@@ -27,7 +27,7 @@
                 <div class="d-flex flex-row align-items-center" [routerLink]="['/members/',message.senderId]" [queryParams]="{tab:'3'}" style="cursor: pointer;">
                     <div class="image"> <img src="{{message.senderPhotoUrl}}" width="70"> <span class="type"><img src="https://i.imgur.com/4lg6mOg.png" width="20"></span> </div>
                     <div class="d-flex flex-column line-height ml-2"> <span class="font-weight-bold" style="color:#000">{{message.senderKnowAs}}</span> <span>{{message.content}}</span> <span class="d-flex flex-row align-items-center l-now">{{message.messageSent}}</span> </div>
-                </div> <button class="btn btn-danger">Delete</button>
+                </div> <button class="btn btn-danger" (click)="DeleteMessage(message.id)">Delete</button>
             </div>
         </div>
     </div>

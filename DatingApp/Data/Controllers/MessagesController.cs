@@ -86,6 +86,7 @@ namespace DatingApp.Data.Controllers
             if (userId != currentUserId) {
                 return Unauthorized();
             }
+            var currentUser = await _repo.GetUser(currentUserId);
             messageForCreationDto.SenderId = userId;
            
             //get recipent user
@@ -97,13 +98,49 @@ namespace DatingApp.Data.Controllers
             }
             var message = _mapper.Map<Messages>(messageForCreationDto);
             var newmessage = new Messages { RecepientId = messageForCreationDto.RecipentId, SenderId = userId, Content = messageForCreationDto.Content, MessageSent = DateTime.Now };
-            _repo.Add<Messages>(newmessage);
+
+            var messageToReturn = _mapper.Map<MessageToReturnDto>(message);
+            if (currentUser.Photos.Count != 0)
+            {
+                messageToReturn.SenderPhotoUrl = currentUser.Photos.FirstOrDefault(x => x.IsMain == true).Url;
+            }
+
+                _repo.Add<Messages>(newmessage);
             if (await _repo.SaveAll()) {
 
-                return CreatedAtAction("GetMessage",new { id= newmessage.Id},newmessage);
+                //return CreatedAtAction("GetMessage",new { id= newmessage.Id},newmessage);
+                return Ok(messageToReturn);
             }
             else { throw new Exception("create message faild"); }
         
         }
+
+
+        //method to delette messages from sender or recipent
+        [HttpPost("{id}")]
+
+        public async Task<IActionResult> DeleteMessages(int id, int userId) {
+            var currentUserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            if (userId != currentUserId)
+            {
+                return Unauthorized();
+            }
+            var messageFromRepo = await _repo.GetMessage(id);
+            if (messageFromRepo.SenderId == userId) {
+                messageFromRepo.SenderDeleted = true;
+            }
+            if (messageFromRepo.RecepientId == userId) {
+                messageFromRepo.RecipentDeleted = true;
+            }
+            if (messageFromRepo.SenderDeleted && messageFromRepo.RecipentDeleted) {
+                 _repo.Delete<Messages>(messageFromRepo);
+            }
+            if (await _repo.SaveAll()) {
+                return NoContent();
+            }
+            throw new Exception("error when deleting message");
+
+        }
+
     }
 }
